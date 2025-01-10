@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+
 function CreateNewEvent({isVisible, onClose, children})
 {
         const handleClose = (e) => {

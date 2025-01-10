@@ -203,7 +203,7 @@ function Events() {
                                                 <div className="px-3"><input type="text" placeholder="Search for Events" className="w-full rounded-3xl focus:ring-green-400"/></div>
                                                 <div className="cols-span-3">
                                                         <div className="grid grid-cols-3 gap-4">
-                                                                <div><button className="text-gray-500 text-sm font-semibold mt-1 p-1 px-3 rounded-xl shadow-md" style={{backgroundColor: '#afdade'}} onClick={handleShow}>Add Past Event</button></div>
+                                                                {/* <div><button className="text-gray-500 text-sm font-semibold mt-1 p-1 px-3 rounded-xl shadow-md" style={{backgroundColor: '#afdade'}} onClick={handleShow}>Add Past Event</button></div> */}
                                                                 <div><button className="text-gray-500 text-sm font-semibold mt-1 p-1 px-3 rounded-xl shadow-md"  style={{backgroundColor: '#afd5de'}} onClick={handleShow2}>Create Event</button></div>
                                                                 <div><button className="text-gray-500 text-sm font-semibold mt-1 p-1 px-3 rounded-xl shadow-md"  style={{backgroundColor: '#afcdde'}} onClick={handleShow3}>Request Speaker</button></div>
                                                         </div>
@@ -221,6 +221,7 @@ function Events() {
                                                                         <th className="px-5 py-2 text-left text-green-600">Actions</th>
                                                                 </tr>
                                                         </thead>
+                                                        
                                                         <tbody>
                                                         {Array.isArray(eventData) && eventData.length > 0 ? (
                                                                 eventData.map((dataObj, index) => (
@@ -322,85 +323,229 @@ function Events() {
                 <button className="text-gray-500 text-sm font-semibold mt-1 p-1 px-3 rounded-xl shadow-md flex items-center justify-center"  style={{backgroundColor: '#afcdde'}}>Submit</button>                
         </form>
         </AddPastEvents>
-        <CreateNewEvent isVisible={openCreateNewEvent} onClose={()=>setCreateNewEvent(false)}>
-                <form onSubmit={CreateEveData}>
-                <h1 className="text-gray-500 font-semibold">Create Event</h1>
-                <div className="grid grid-cols-3 gap-4 mt-10">
-                        <div class="relative">
-                                <select id="countries" name="event_type" onChange={handleChangeEve} className="peer border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 appearance-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                <option>Hello</option>
-                                </select>
-                                <label for="countries" id="floatig_outlined" className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-700 px-2 peer-focus:px-2 peer-focus:text-blue-500 peer-focus:dark:text-blue-500 peer-focus:dark:bg-gray-700 peer-focus:bg-white peer-focus:scale-75 peer-focus:-translate-y-6 left-2.5">Event type</label>
-                        </div>
-                        <div className="relative">
-                                <input type="text" id="floating_outlined" onChange={handleChangeEve} name="event_title" className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "/>
-                                <label for="floating_outlined" className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Event Title</label>
-                        </div> 
-                        <div class="relative">
-                                <select id="countries" name="event_privacy" onChange={handleChangeEve} className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 appearance-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option value="Public">Public</option>
-                                        <option value="Private">Private</option>
-                                </select>
-                                <label for="countries" id="floatig_outlined" className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-700 px-2 peer-focus:px-2 peer-focus:text-blue-500 peer-focus:dark:text-blue-500 peer-focus:dark:bg-gray-700 peer-focus:bg-white peer-focus:scale-75 peer-focus:-translate-y-6 left-2.5">Event Privacy</label>
-                        </div>                                              
-                </div>
-                <div className="grid grid-cols-1 mt-5">
-                        <div className="relative">
-                                <textarea name="event_description" onChange={handleChangeEve} className="resize-none rounded-md w-full" placeholder=""></textarea>
-                                <label for="floating_outlined" className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Event description</label>
-                        </div>
-                </div>
-                <div class="relative mt-2 ">
-                                <select id="countries" className="peer border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 appearance-none dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="select_speaker" onChange={handleChangeEve}>
-                                        {Array.isArray(fetchedMentorData) && fetchedMentorData.length > 0 ? (
-                                                fetchedMentorData.map((dataObj, key) => (
-                                                        <option key={key} value={dataObj.mentor_name}>
-                                                                {dataObj.mentor_name}
-                                                        </option>    
-                                                ))
-                                        ) : null}
-                                </select>
-                                <label for="countries" id="floatig_outlined" className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-700 px-2 peer-focus:px-2 peer-focus:text-blue-500 peer-focus:dark:text-blue-500 peer-focus:dark:bg-gray-700 peer-focus:bg-white peer-focus:scale-75 peer-focus:-translate-y-6 left-2.5">Select Speaker</label>
-                </div>
-                <div className="grid grid-cols-2 mt-3 gap-4">
-                        <div className="relative">
-                                <input type="date" onChange={handleChangeEve} name="event_date" id="floating_outlined" className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "/>
-                                <label for="floating_outlined" className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Event date</label>
-                        </div> 
-                        <div className="relative">
-                                <input type="time" name="event_time" onChange={handleChangeEve} id="floating_outlined" className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "/>
-                                <label for="floating_outlined" className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Event time</label>
-                        </div>
-                </div>
-                <div className="flex justify-center mt-3">
-                    <button className="text-gray-500 text-sm font-semibold mt-1 p-1 px-3 rounded-xl shadow-md" style={{backgroundColor: '#afdade'}}>Create Event</button>                                                    
-                </div>
-                </form>
-        </CreateNewEvent>
-        <RequestSpeaker isVisible={reqSpeaker} onClose={()=>setRequestSpeaker(false)}>
-                <form onSubmit={RequestSpeakerButton}>
-                        <div className="font-semibold">Request Speaker</div> 
-                        <div class="relative mt-5">
-                                        <select id="countries" onChange={handleChangeReqSpeaker} name="select_speaker" className="peer border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 appearance-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        {Array.isArray(fetchedMentorData) && fetchedMentorData.length > 0 ? (
-                                                fetchedMentorData.map((dataObj, key) => (
-                                                        <option key={key} value={dataObj.mentor_name}>
-                                                                {dataObj.mentor_name}
-                                                        </option>    
-                                                ))
-                                        ) : null}
-                                        </select>
-                                        <label for="countries" id="floatig_outlined"  className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-700 px-2 peer-focus:px-2 peer-focus:text-blue-500 peer-focus:dark:text-blue-500 peer-focus:dark:bg-gray-700 peer-focus:bg-white peer-focus:scale-75 peer-focus:-translate-y-6 left-2.5">Select Speaker</label>
-                        </div>
-                        <div className="relative mt-5">
-                                        <textarea className="resize-none rounded-md w-full" placeholder="" name="event_description" onChange={handleChangeReqSpeaker}></textarea>
-                                        <label for="floating_outlined" className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Event description</label>
-                        </div> 
-                        <div className="flex justify-center mt-3">
-                                        <button className="text-gray-500 text-sm font-semibold mt-1 p-1 px-3 rounded-xl shadow-md" style={{backgroundColor: '#afdade'}}>Create Event</button>                                                    
-                        </div>                
-                </form>
-        </RequestSpeaker>
+        <CreateNewEvent isVisible={openCreateNewEvent} onClose={() => setCreateNewEvent(false)}>
+  <form onSubmit={CreateEveData} className="space-y-6">
+    <h1 className="text-gray-500 font-semibold text-2xl">Event Details</h1>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="space-y-4">
+        <label className="text-sm font-medium">Event Type</label>
+        <select 
+          name="eventType"
+          onChange={handleChangeEve}
+          className="w-full rounded-lg border border-gray-200 p-3 text-sm focus:outline-none focus:border-gray-400"
+        >
+          <option value="">Select event type</option>
+          <option value="workshop">Workshop</option>
+          <option value="seminar">Seminar</option>
+          <option value="conference">Conference</option>
+        </select>
+      </div>
+
+      <div className="space-y-4">
+        <label className="text-sm font-medium">Event Title</label>
+        <input
+          type="text"
+          name="eventTitle"
+          placeholder="Enter event title"
+          onChange={handleChangeEve}
+          className="w-full rounded-lg border border-gray-200 p-3 text-sm focus:outline-none focus:border-gray-400"
+        />
+      </div>
+    </div>
+
+    <div className="space-y-4">
+      <label className="text-sm font-medium">Event Privacy</label>
+      <div className="flex space-x-4">
+        <label className="flex items-center space-x-2">
+          <input
+            type="radio"
+            name="privacy"
+            value="private"
+            checked={formData.privacy === 'private'}
+            onChange={handleChangeEve}
+            className="w-4 h-4"
+          />
+          <span className="text-sm">Private</span>
+        </label>
+        <label className="flex items-center space-x-2">
+          <input
+            type="radio"
+            name="privacy"
+            value="public"
+            checked={formData.privacy === 'public'}
+            onChange={handleChangeEve}
+            className="w-4 h-4"
+          />
+          <span className="text-sm">Public</span>
+        </label>
+      </div>
+    </div>
+
+    <div className="space-y-4">
+      <h3 className="font-semibold text-sm mb-2">Speaker</h3>
+      <select
+        id="countries"
+        onChange={handleChangeReqSpeaker}
+        name="select_speaker"
+        className="w-full rounded-lg border border-gray-200 p-3 text-sm focus:outline-none focus:border-gray-400"
+      >
+        <option value="">Select a Speaker</option>
+        <option value="Speaker1">Speaker john</option>
+        <option value="Speaker2">Speaker doe</option>
+        <option value="Speaker3">Speaker track</option>
+        {Array.isArray(fetchedMentorData) && fetchedMentorData.length > 0 ? (
+          fetchedMentorData.map((dataObj, key) => (
+            <option key={key} value={dataObj.mentor_name}>
+              {dataObj.mentor_name}
+            </option>
+          ))
+        ) : null}
+      </select>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="space-y-4">
+        <label className="text-sm font-medium">Event Date</label>
+        <input
+          type="date"
+          onChange={handleChangeEve}
+          name="event_date"
+          className="w-full rounded-lg border border-gray-200 p-3 text-sm focus:outline-none focus:border-gray-400"
+        />
+      </div>
+      <div className="space-y-4">
+        <label className="text-sm font-medium">Event Time</label>
+        <input
+          type="time"
+          name="event_time"
+          onChange={handleChangeEve}
+          className="w-full rounded-lg border border-gray-200 p-3 text-sm focus:outline-none focus:border-gray-400"
+        />
+      </div>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="space-y-4">
+        <label className="text-sm font-medium">Event Link</label>
+        <input
+          type="text"
+          name="eventLink"
+          placeholder="Enter event link"
+          onChange={handleChangeEve}
+          className="w-full rounded-lg border border-gray-200 p-3 text-sm focus:outline-none focus:border-gray-400"
+        />
+      </div>
+
+      <div className="space-y-4">
+        <label className="text-sm font-medium">Thumbnail</label>
+        <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3">
+          <span className="text-sm text-gray-500">No file chosen</span>
+          <button type="button" className="flex items-center space-x-1 bg-gray-100 px-3 py-1 rounded-lg">
+            <span className="text-sm">Upload</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div className="space-y-4">
+      <label className="text-sm font-medium">Event Description</label>
+      <textarea
+        className="resize-none rounded-md w-full border border-gray-200 p-3 text-sm focus:outline-none focus:border-gray-400"
+        placeholder="Type here..."
+        name="event_description"
+        onChange={handleChangeReqSpeaker}
+      />
+    </div>
+
+    <div className="flex justify-between mt-4">
+      <button
+        type="button"
+        className="text-sm font-medium underline"
+        onClick={() => setFormData({
+          eventType: '',
+          eventTitle: '',
+          privacy: 'private',
+          speaker: '',
+          eventDate: '',
+          eventTime: '',
+          eventLink: '',
+          description: ''
+        })}
+      >
+        Clear Form
+      </button>
+      <button
+        type="submit"
+        className="bg-gray-500 text-white px-6 py-2 rounded-lg text-sm font-medium"
+      >
+        Preview
+      </button>
+    </div>
+  </form>
+</CreateNewEvent>
+
+        <RequestSpeaker isVisible={reqSpeaker} onClose={() => setRequestSpeaker(false)}>
+          <form onSubmit={RequestSpeakerButton} className="w-full max-w-md mx-auto p-4">
+          <div className="font-semibold">Request Speaker</div>
+          <div className="relative mt-5">
+          <h3 className="font-semibold text mb-2"> speaker</h3>
+         <select
+          id="countries"
+          onChange={handleChangeReqSpeaker}
+          name="select_speaker"
+          className="peer border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 appearance-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+         >
+        <option value="" abled>
+          Select a Speaker
+        </option>
+        <option value="Speaker1">Speaker 1</option>
+        <option value="Speaker2">Speaker 2</option>
+        <option value="Speaker3">Speaker 3</option>
+        {Array.isArray(fetchedMentorData) && fetchedMentorData.length > 0 ? (
+          fetchedMentorData.map((dataObj, key) => (
+            <option key={key} value={dataObj.mentor_name}>
+              {dataObj.mentor_name}
+            </option>
+          ))
+        ) : null}
+      </select>
+      <label
+        htmlFor="countries"
+        id="floating_outlined"
+        className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-700 px-2 peer-focus:px-2 peer-focus:text-blue-500 peer-focus:dark:text-blue-500 peer-focus:dark:bg-gray-700 peer-focus:bg-white peer-focus:scale-75 peer-focus:-translate-y-6 left-2.5"
+      >
+        
+      </label>
+    </div>
+    <div className="relative mt-5">
+  <h3 className="font-semibold text mb-2"> Anything want to share</h3> {/* Add heading here */}
+  <textarea
+    className="peer resize-none rounded-md w-full border border-gray-300 p-2.5"
+    placeholder="Typehere..."
+    name="event_description"
+    onChange={handleChangeReqSpeaker}
+  />
+  <label
+    htmlFor="floating_outlined"
+    className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+  >
+    
+  </label>
+</div>
+
+    <div className="flex justify-center mt-3">
+      <button
+        type="submit"
+        className="text-gray-500 text-sm font-semibold mt-1 p-1 px-3 rounded-xl shadow-md"
+        style={{ backgroundColor: '#afdade' }}
+      >
+        Request Speaker
+      </button>
+    </div>
+  </form>
+</RequestSpeaker>
+
     </div>
   )
 }
